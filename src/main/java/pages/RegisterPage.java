@@ -14,6 +14,7 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.security.Key;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +43,8 @@ public class RegisterPage {
 
     @FindBy(how = How.XPATH, using = "//*[contains(text(), 'Ok')]")
     private WebElement okButton;
+
+
 
     @FindBy(how = How.ID, using = "user-country")
     private WebElement countryInput;
@@ -73,25 +76,50 @@ public class RegisterPage {
     @FindBy(how = How.XPATH, using = "//*[contains(text(), 'Online.io TGE')]")
     private WebElement successScreen;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"intercom-container\"]/div/span[2]/div/div/a")
+    private WebElement closeChat;
+
 
 
     public void HappyRegisterFlow(RegisterModel registerModel) throws InterruptedException, AWTException {
         Robot r=new Robot();
-        WebDriverWait wait=new WebDriverWait(driver,10);
+        WebDriverWait wait=new WebDriverWait(driver,20);
 
         wait.until(ExpectedConditions.visibilityOf(signUpButton));
         signUpButton.click();
+
+
+        wait.until(ExpectedConditions.visibilityOf(closeChat));
+        closeChat.click();
         wait.until(ExpectedConditions.visibilityOf(continueButton));
-        continueButton.click();
 
 
 
-        wait.until(ExpectedConditions.visibilityOf(firstNameInput));
-        firstNameInput.clear();
-        r.keyPress(KeyEvent.VK_ENTER);
+        //r.keyPress(KeyEvent.VK_ENTER);
+
+        //
+        //
+         continueButton.click();
+
+        Thread.sleep(5000);
+
+        //r.keyPress(KeyEvent.VK_ENTER);
+
+
+
+
+        wait.until(ExpectedConditions.elementToBeClickable(firstNameInput));
+        firstNameInput.click();
+       // firstNameInput.clear();
+
+        //
+         r.keyPress(KeyEvent.VK_ENTER);
+
         Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Please fill this in')]")).isDisplayed());
         firstNameInput.sendKeys(registerModel.getFirstName());
-        r.keyPress(KeyEvent.VK_ENTER);
+
+        okButton.click();
+
 
 
 

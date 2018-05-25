@@ -3,8 +3,10 @@ package tests;
 import enums.Browsers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
  * Created by casab on 11/2/2017.
@@ -16,7 +18,11 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
             switch (browserName) {
                 case CHROME:
                     System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-                    driver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--incognito");
+                    DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+                    driver = new ChromeDriver(capabilities);
                     break;
                 case FIREFOX:
                     System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/gekodriver.exe");

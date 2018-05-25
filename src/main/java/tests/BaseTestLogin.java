@@ -20,9 +20,10 @@ public class BaseTestLogin {
     @BeforeMethod
     public void setUp() throws InterruptedException {
         driver = WebBrowsers.getDriver(Browsers.CHROME);
+
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get("https://online.io/");
+        driver.get("https://online.io");
         //https://d1qoal4nguj436.cloudfront.net/sign-up
 
         Thread.sleep(1000);
