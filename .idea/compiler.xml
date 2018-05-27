@@ -7,7 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="online" />
+        <module name="online.io" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="online.io" target="7" />
+    </bytecodeTargetLevel>
   </component>
 </project>

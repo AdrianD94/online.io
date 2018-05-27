@@ -1,10 +1,9 @@
 package tests;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import enums.Browsers;
-import org.junit.After;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -16,9 +15,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseTestLogin {
     public WebDriver driver;
-
+    public static ExtentReports reports;
+    public static ExtentTest test;
     @BeforeMethod
     public void setUp() throws InterruptedException {
+
         driver = WebBrowsers.getDriver(Browsers.CHROME);
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -44,6 +45,8 @@ public class BaseTestLogin {
 
     @AfterMethod
     public void closeBrowser() throws InterruptedException{
+        reports.endTest(test);
+        reports.flush();
         driver.quit();
     }
 }

@@ -1,18 +1,20 @@
 package pages;
-import javafx.scene.control.PasswordField;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import models.LoginModel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class LoginPage {
     WebDriver driver;
-
+    public static ExtentReports reports;
+    public static ExtentTest test;
     public LoginPage(WebDriver driverLn) {
         {
             this.driver = driverLn;
@@ -44,6 +46,10 @@ public class LoginPage {
 
 
     public void HappyLoginFlow(LoginModel model) throws InterruptedException {
+        reports = new ExtentReports(System.getProperty("user.dir") + "/HtmlReport/index.html", true);
+        test = reports.startTest("Happy Flow Login Test", "Validate user can log in using valid credentials");
+        test.log(LogStatus.PASS,"Browser launch successful");
+        test.log(LogStatus.PASS,"Successfully navigate to online.io");
         WebDriverWait wait=new WebDriverWait(driver,20);
 
         //--------------Happy flow--------------------
