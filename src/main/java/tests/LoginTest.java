@@ -37,6 +37,7 @@ public class LoginTest extends BaseTestLogin {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.HappyLoginFlow(loginModel);
 
+
     }
 
     @Test(dataProvider = "LoginJson",priority=1)
