@@ -35,7 +35,7 @@ public class RegisterTest extends BaseTestLogin {
     }
 
     @Test(dataProvider = "RegisterJson",priority=2)
-    public void HappyFlowRegisterTest(RegisterModel registerModel) throws InterruptedException, AWTException {
+    public void RegisterTest(RegisterModel registerModel) throws InterruptedException, AWTException {
         RegisterPage registerPage = PageFactory.initElements(driver, RegisterPage.class);
 
 

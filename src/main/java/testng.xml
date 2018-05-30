@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="FREE CRM Application Test Automation Test Suite">
+<suite name="Online.io Register and Login tests">
 
     <listeners>
         <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter" />
     </listeners>
 
 
-    <test name="Obline io login">
+    <test name="Obline io register">
         <classes>
             <class name="tests.RegisterTest"></class>
+
+        </classes>
+
+    </test>
+
+    <!--<test name="Obline io login">
+        <classes>
             <class name="tests.LoginTest"></class>
 
         </classes>
-    </test>
+
+    </test>-->
+
+
 </suite>

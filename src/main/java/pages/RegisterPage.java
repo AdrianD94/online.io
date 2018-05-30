@@ -79,7 +79,8 @@ public class RegisterPage {
     @FindBy(how = How.XPATH, using = "//*[@id=\"intercom-container\"]/div/span[2]/div/div/a")
     private WebElement closeChat;
 
-
+    @FindBy(how = How.XPATH, using = "//*[contains(text(), 'I accept')]")
+    private WebElement iAgree;
 
     public void HappyRegisterFlow(RegisterModel registerModel) throws InterruptedException, AWTException {
         Robot r=new Robot();
@@ -89,8 +90,8 @@ public class RegisterPage {
         signUpButton.click();
 
 
-        wait.until(ExpectedConditions.visibilityOf(closeChat));
-        closeChat.click();
+        //wait.until(ExpectedConditions.visibilityOf(closeChat));
+        //closeChat.click();
         wait.until(ExpectedConditions.visibilityOf(continueButton));
 
 
@@ -101,98 +102,43 @@ public class RegisterPage {
         //
          continueButton.click();
 
-        Thread.sleep(5000);
+         wait.until(ExpectedConditions.visibilityOf(firstNameInput));
 
-        //r.keyPress(KeyEvent.VK_ENTER);
-
-
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(firstNameInput));
-        firstNameInput.click();
-       // firstNameInput.clear();
-
-        //
-         r.keyPress(KeyEvent.VK_ENTER);
-
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Please fill this in')]")).isDisplayed());
-        firstNameInput.sendKeys(registerModel.getFirstName());
-
-        okButton.click();
-
-
-
+         firstNameInput.sendKeys(registerModel.getFirstName());
+         wait.until(ExpectedConditions.textToBePresentInElementValue(firstNameInput,registerModel.getFirstName()));
+         okButton.click();
 
         wait.until(ExpectedConditions.visibilityOf(lastNameInput));
-        lastNameInput.clear();
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Please fill this in')]")).isDisplayed());
         lastNameInput.sendKeys(registerModel.getLastName());
-        r.keyPress(KeyEvent.VK_ENTER);
-
-
+        wait.until(ExpectedConditions.textToBePresentInElementValue(lastNameInput,registerModel.getLastName()));
+        okButton.click();
 
         wait.until(ExpectedConditions.visibilityOf(countryInput));
-        countryInput.clear();
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Please fill this in')]")).isDisplayed());
         countryInput.sendKeys(registerModel.getCountry());
-        r.keyPress(KeyEvent.VK_ENTER);
-
-
+        wait.until(ExpectedConditions.textToBePresentInElementValue(countryInput,registerModel.getCountry()));
+        okButton.click();
+        //r.keyPress(KeyEvent.VK_ENTER);
 
         wait.until(ExpectedConditions.visibilityOf(userEmail));
-        userEmail.clear();
-        Thread.sleep(1000);
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Please enter valid email address')]")).isDisplayed());
-        userEmail.sendKeys("dsadsadsa");
-
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Please enter valid email address')]")).isDisplayed());
-        userEmail.clear();
         userEmail.sendKeys(registerModel.getEmail());
-
-        r.keyPress(KeyEvent.VK_ENTER);
-
-
+        wait.until(ExpectedConditions.textToBePresentInElementValue(userEmail,registerModel.getEmail()));
+        okButton.click();
 
         wait.until(ExpectedConditions.visibilityOf(passwordInput));
-        passwordInput.clear();
-        Thread.sleep(1000);
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Use numbers, upper, lower case letters, special chars')]")).isDisplayed());
-        passwordInput.sendKeys("dsadsadsa");
-        Thread.sleep(1000);
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Use numbers, upper, lower case letters, special chars')]")).isDisplayed());
-        passwordInput.clear();
         passwordInput.sendKeys(registerModel.getPassword());
-        Thread.sleep(1000);
-        r.keyPress(KeyEvent.VK_ENTER);
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-
+        wait.until(ExpectedConditions.textToBePresentInElementValue(passwordInput,registerModel.getPassword()));
+        okButton.click();
 
         wait.until(ExpectedConditions.visibilityOf(confirmPasswordInput));
-        confirmPasswordInput.clear();
-        r.keyPress(KeyEvent.VK_ENTER);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Password does not match')]")).isDisplayed());
-        //confirmPasswordInput.clear();
-        //confirmPasswordInput.sendKeys("dsadasda");
-        //r.keyPress(KeyEvent.VK_ENTER);
-       // Assert.assertTrue(driver.findElement(By.xpath("//*[contains(text(), 'Password does not match')]")).isDisplayed());
-        confirmPasswordInput.clear();
         confirmPasswordInput.sendKeys(registerModel.getConfirmPassword());
-        r.keyPress(KeyEvent.VK_ENTER);
-
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.textToBePresentInElementValue(confirmPasswordInput,registerModel.getConfirmPassword()));
+        okButton.click();
 
 
         wait.until(ExpectedConditions.visibilityOf(chatMethod));
         Select dropdown=new Select(chatMethod);
 
-
+        Thread.sleep(2000);
         chatMethod.click();
         dropdown.selectByVisibleText("Skype");
         wait.until(ExpectedConditions.visibilityOf(chatMethodInput));
@@ -200,10 +146,11 @@ public class RegisterPage {
 
         r.keyPress(KeyEvent.VK_ENTER);
 
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[contains(text(), 'How much would you like to contribute? *')]"))));
         radioButton1.get(1).click();
-        r.keyPress(KeyEvent.VK_ENTER);
-        Thread.sleep(3000);
+        okButton.click();
+
+       wait.until(ExpectedConditions.visibilityOf(iAgree));
 
 
         termsCondition.get(0).click();
