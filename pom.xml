@@ -31,12 +31,7 @@
         </plugins>
     </build>-->
 
-    <properties>
-        <test-output-path>${project.basedir}/test-output/</test-output-path>
-        <reports-path>${test-output-path}/reports/</reports-path>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
+
 
     <build>
         <plugins>
@@ -53,10 +48,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <reportPath>${reports-path}</reportPath>
-                        <testOutputPath>${test-output-path}</testOutputPath>
-                    </systemPropertyVariables>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -68,8 +60,7 @@
                         <phase>clean</phase>
                         <configuration>
                             <tasks>
-                                <delete dir="${test-output-path}"/>
-                                <mkdir dir="${reports-path}"/>
+                               
                             </tasks>
                         </configuration>
                         <goals>
