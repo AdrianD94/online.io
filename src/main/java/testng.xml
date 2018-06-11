@@ -7,13 +7,13 @@
     </listeners>
 
 
-   <!-- <test name="Obline io register">
+   <test name="Obline io register">
         <classes>
             <class name="tests.RegisterTest"></class>
 
         </classes>
 
-    </test>-->
+    </test>
 
     <test name="Obline io login">
         <classes>
