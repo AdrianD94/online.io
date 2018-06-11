@@ -84,12 +84,12 @@ public class RegisterPage {
 
     public void HappyRegisterFlow(RegisterModel registerModel) throws InterruptedException, AWTException {
         Robot r=new Robot();
-        WebDriverWait wait=new WebDriverWait(driver,20);
+        WebDriverWait wait=new WebDriverWait(driver,200);
 
         wait.until(ExpectedConditions.visibilityOf(signUpButton));
         signUpButton.click();
 
-
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         //wait.until(ExpectedConditions.visibilityOf(closeChat));
         //closeChat.click();
         wait.until(ExpectedConditions.visibilityOf(continueButton));
@@ -146,7 +146,7 @@ public class RegisterPage {
 
         r.keyPress(KeyEvent.VK_ENTER);
 
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[contains(text(), 'How much would you like to contribute? *')]"))));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[contains(text(), 'How much would you like to contribute?')]"))));
         radioButton1.get(1).click();
         okButton.click();
 
